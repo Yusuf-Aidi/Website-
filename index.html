@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard Karyawan — Demo</title>
+
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- jsPDF + autoTable (for PDF export) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+  <!-- SheetJS (for Excel export) -->
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <h1>Dashboard Karyawan</h1>
+  </header>
+
+  <nav class="navbar">
+    <button class="nav-btn active" data-tab="dashboard">Dashboard</button>
+    <button class="nav-btn" data-tab="input">Input Data</button>
+    <button class="nav-btn" data-tab="database">Database</button>
+    <button class="nav-btn" data-tab="Penggajian">Penggajian</button>
+  </nav>
+
+  <main class="container">
+
+    <!-- DASHBOARD -->
+    <section id="tab-dashboard" class="card tab">
+      <h2>Ringkasan</h2>
+      <div class="stats" id="statsContainer">
+        <div class="stat-box">
+          <h3 id="countAll">0</h3>
+          <p>Karyawan</p>
+        </div>
+        <div class="stat-box">
+          <h3 id="countNew">0</h3>
+          <p>Karyawan Baru (30 hari)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INPUT -->
+    <section id="tab-input" class="card tab" style="display:none">
+      <h2>Form Input Karyawan</h2>
+      <form id="employeeForm">
+        <label for="employee_id">NIK / ID *</label>
+        <input id="employee_id" placeholder="EMP-001" required>
+
+        <label for="name">Nama *</label>
+        <input id="name" placeholder="Masukkan nama lengkap" required>
+
+        <label for="position">Jabatan *</label>
+        <input id="position" placeholder="Masukkan jabatan" required>
+
+        <label for="date_joined">Tanggal Bergabung</label>
+        <input id="date_joined" type="date">
+
+        <label for="phone">No. Telepon</label>
+        <input id="phone" placeholder="0812...">
+
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="nama@contoh.com">
+
+        <label for="address">Alamat</label>
+        <input id="address" placeholder="Alamat lengkap">
+
+        <div style="display:flex;gap:8px;margin-top:10px;">
+          <button class="btn-primary" type="submit" id="saveBtn">Tambah</button>
+          <button class="btn-ghost" type="button" id="resetBtn">Reset</button>
+          <div style="margin-left:auto;align-self:center">
+            <small id="formMode">Mode: <b>Tambah</b></small>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- DATABASE (list + controls) -->
+    <section id="tab-database" class="card tab" style="display:none">
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;">
+        <input id="searchInput" placeholder="Cari nama / NIK / jabatan..." style="flex:1;padding:8px;border-radius:8px;border:1px solid #dbeafe">
+        <select id="sortSelect" style="padding:8px;border-radius:8px;">
+          <option value="name_asc">Nama A → Z</option>
+          <option value="name_desc">Nama Z → A</option>
+          <option value="date_desc">Tgl Bergabung (Terbaru)</option>
+          <option value="date_asc">Tgl Bergabung (Terlama)</option>
+        </select>
+
+        <button class="bt-ghost" id="exportCsvBtn">Export CSV</button>
+        <button class="bt-ghost" id="exportXlsBtn">Export Excel</button>
+        <button class="bt-ghost" id="exportPdfBtn">Export PDF</button>
+      </div>
+
+      <div class="tabl-wrap">
+        <table aria-label="Tabel Data Karyawan">
+          <thead>
+            <tr>
+              <th>NIK</th>
+              <th>Nama</th>
+              <th>Jabatan</th>
+              <th>No. HP</th>
+              <th>Tgl Bergabung</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="employeeTbody"></tbody>
+        </table>
+      </div>
+
+      <div style="display:flex;gap:8px;align-items:center;justify-content:center;margin-top:12px;">
+        <button class="bt-ghost" id="prevPage">Prev</button>
+        <div id="paginationInfo"></div>
+        <button class="bt-ghost" id="nextPage">Next</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- modal confirm delete -->
+  <div id="modalDelete" class="modl-backdrop" style="display:none">
+    <div class="modl">
+      <h3>Konfirmasi Hapus</h3>
+      <p class="muted">Anda yakin ingin menghapus data ini?</p>
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:18px">
+        <button class="btn-ghost" id="cancelDelete">Batal</button>
+        <button class="btn-danger" id="confirmDelete">Hapus</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- config: set to true to use backend API (api.php), false to use localStorage -->
+  <script>
+    const USE_API = true; // <<< ubah ke true jika ingin memakai backend PHP + MySQL
+    const API_BASE = './api.php';
+  </script>
+
+  <!-- main script -->
+  <script src="script.js"></script>
+  </html><form action="upload.php" method="POST" enctype="multipart/form-data">
+    <input type="file" name="foto" required>
+    <button type="submit">Upload Foto</button>
+  </form>
+</body>
+</html>

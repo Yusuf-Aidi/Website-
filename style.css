@@ -1,0 +1,90 @@
+/* style.css - Theme blue/purple mobile/dashboard */
+
+* { box-sizing: border-box; }
+html,body { height:100%; }
+body{
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  margin:0;
+  background: linear-gradient(180deg,#f3f4ff 0%, #eef2f8 100%);
+  color:#0f172a;
+  padding:0;
+}
+
+/* topbar */
+.topbar{
+  background: linear-gradient(90deg,#4a00e0,#6a5acd);
+  color:white;
+  padding:14px;
+  text-align:center;
+  font-weight:700;
+}
+
+/* navbar */
+.navbar{
+  display:flex;
+  gap:6px;
+  padding:10px;
+  background:transparent;
+  justify-content:center;
+}
+.nav-btn{
+  flex:1;
+  padding:10px;
+  border-radius:10px;
+  border:0;
+  background:#ebe6ff;
+  font-weight:700;
+}
+.nav-btn.active{ background:#4a00e0;color:white; }
+
+/* container */
+.container{
+  padding:12px;
+  max-width:430px;
+  margin:12px auto;
+}
+
+/* card */
+.card{
+  background:white;
+  padding:12px;
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(15,23,42,0.06);
+  margin-bottom:12px;
+}
+
+/* stats */
+.stats{ display:flex; gap:8px; }
+.stat-box{
+  flex:1;
+  background:#6a5acd;
+  color:white;
+  padding:14px;
+  border-radius:10px;
+  text-align:center;
+}
+
+/* form */
+label{display:block;margin-top:8px;margin-bottom:6px;font-weight:600;font-size:13px}
+input[type="text"], input[type="date"], input[type="email"], select{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #e6e9ee;
+}
+.btn-primary{ padding:10px;border-radius:10px;background:#4a00e0;color:white;border:0;font-weight:700 }
+.btn-ghost{ padding:8px 10px;border-radius:8px;background:transparent;border:1px solid #e6e9ee }
+.btn-danger{ padding:8px 10px;border-radius:8px;background:#ef4444;color:white;border:0 }
+
+/* table */
+.table-wrap{ overflow:auto;margin-top:8px; }
+table{ width:100%; border-collapse:collapse; font-size:14px }
+thead th{ text-align:left;padding:10px;border-bottom:1px solid #edf2f7;color:#475569 }
+tbody td{ padding:10px;border-bottom:1px solid #f1f5f9 }
+tr:hover td{ background:#fbfdff }
+
+/* responsive */
+@media(min-width:900px){
+  body{ background:#f3f4ff }
+  .container{ max-width:920px }
+}
